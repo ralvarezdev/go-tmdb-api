@@ -47,9 +47,9 @@ type (
 	// ProductionCompany represents a movie production company
 	ProductionCompany struct {
 		ID            int32  `json:"id"`
-		LogoPath      string `json:"logo_path"`
+		LogoPath      *string `json:"logo_path,omitempty"`
 		Name          string `json:"name"`
-		OriginCountry string `json:"origin_country"`
+		OriginCountry *string `json:"origin_country,omitempty"`
 	}
 
 	// ProductionCountry represents a movie production country
@@ -76,7 +76,7 @@ type (
 		OriginalLanguage string  `json:"original_language"`
 		OriginalTitle    string  `json:"original_title"`
 		Overview         string  `json:"overview"`
-		Popularity       float32 `json:"popularity"`
+		Popularity       *float32 `json:"popularity,omitempty"`
 		PosterPath       string  `json:"poster_path"`
 		ReleaseDate      string  `json:"release_date"`
 		Title            string  `json:"title"`
@@ -122,7 +122,7 @@ type (
 		OriginalLanguage    string              `json:"original_language"`
 		OriginalTitle       string              `json:"original_title"`
 		Overview            string              `json:"overview"`
-		Popularity          float32             `json:"popularity"`
+		Popularity          *float32             `json:"popularity,omitempty"`
 		PosterPath          string              `json:"poster_path"`
 		ProductionCompanies []ProductionCompany `json:"production_companies"`
 		ProductionCountries []ProductionCountry `json:"production_countries"`
