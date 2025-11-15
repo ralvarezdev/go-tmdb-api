@@ -18,9 +18,9 @@ func CreateClient() (*Client, error) {
 }
 
 // TestGetMoviesNowPlayingEndpoint tests the GetMoviesNowPlaying endpoint of the TMDB API client
-// 
+//
 // Parameters:
-// 
+//
 // - t: the testing.T instance
 func TestGetMoviesNowPlayingEndpoint(t *testing.T) {
 	// Create the TMDB API client
@@ -34,7 +34,7 @@ func TestGetMoviesNowPlayingEndpoint(t *testing.T) {
 	if err != nil {
 		t.Fatalf("GetMoviesNowPlaying failed with status code %d: %v", statusCode, err)
 	}
-	
+
 	// Check if the response is not nil
 	if response == nil {
 		t.Fatal("GetMoviesNowPlaying returned nil response")
@@ -47,11 +47,11 @@ func TestGetMoviesNowPlayingEndpoint(t *testing.T) {
 
 	t.Logf("GetMoviesNowPlaying returned %d results", len(response.Results))
 }
-	
+
 // TestGetMovieDetailsEndpoint tests the GetMovieDetails endpoint of the TMDB API client
-// 
+//
 // Parameters:
-// 
+//
 // - t: the testing.T instance
 func TestGetMovieDetailsEndpoint(t *testing.T) {
 	// Create the TMDB API client
@@ -65,7 +65,7 @@ func TestGetMovieDetailsEndpoint(t *testing.T) {
 	if err != nil {
 		t.Fatalf("GetMovieDetails failed with status code %d: %v", statusCode, err)
 	}
-	
+
 	// Check if the response is not nil
 	if response == nil {
 		t.Fatal("GetMovieDetails returned nil response")

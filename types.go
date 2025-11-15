@@ -87,6 +87,7 @@ func (c Client) GetMoviesNowPlaying(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -141,6 +142,7 @@ func (c Client) GetMoviesPopular(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -195,6 +197,7 @@ func (c Client) GetMoviesTopRated(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -249,6 +252,7 @@ func (c Client) GetMoviesUpcoming(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -320,6 +324,7 @@ func (c Client) SearchMovies(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -375,6 +380,7 @@ func (c Client) SimilarMovies(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -430,6 +436,7 @@ func (c Client) GetMovieCredits(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -485,6 +492,7 @@ func (c Client) GetMovieDetails(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -543,6 +551,7 @@ func (c Client) GetMovieReviews(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -595,6 +604,7 @@ func (c Client) GetGenresMovieList(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
@@ -646,6 +656,7 @@ func (c Client) DiscoverMovies(
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
+		// nolint:errcheck
 		body, _ := io.ReadAll(resp.Body)
 		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}

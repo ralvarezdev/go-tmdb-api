@@ -3,7 +3,7 @@ package gotmdbapi
 type (
 	// sortBy represents the sorting options for TMDB API requests
 	sortBy string
-	
+
 	// watchMonetizationType represents the watch monetization types for TMDB API requests
 	watchMonetizationType string
 )
@@ -22,7 +22,7 @@ const (
 	SortByValueVoteAverageAsc         sortBy = "vote_average.asc"
 	SortByValueVoteAverageDesc        sortBy = "vote_average.desc"
 	SortByValueVoteCountAsc           sortBy = "vote_count.asc"
-	SortByValueVoteCountDesc          sortBy      = "vote_count.desc"
+	SortByValueVoteCountDesc          sortBy = "vote_count.desc"
 )
 
 const (

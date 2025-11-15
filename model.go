@@ -142,8 +142,8 @@ type (
 	AuthorDetails struct {
 		Name       string  `json:"name"`
 		Username   string  `json:"username"`
-		AvatarPath *string  `json:"avatar_path,omitempty"`
-		Rating     *int32 `json:"rating,omitempty"`
+		AvatarPath *string `json:"avatar_path,omitempty"`
+		Rating     *int32  `json:"rating,omitempty"`
 	}
 
 	// Review represents a movie review
@@ -165,7 +165,7 @@ type (
 		TotalPages   int32    `json:"total_pages"`
 		TotalResults int32    `json:"total_results"`
 	}
-	
+
 	// GenreListResponse represents a genre list response
 	GenreListResponse struct {
 		Genres []Genre `json:"genres"`

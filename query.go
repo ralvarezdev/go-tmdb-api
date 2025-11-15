@@ -11,42 +11,42 @@ import (
 type (
 	// DiscoverMoviesQueryParameters represents the query parameters for discovering movies
 	DiscoverMoviesQueryParameters struct {
-		Certification        string
-		CertificationCountry string
-		CertificationGTE     string
-		CertificationLTE     string
-		IncludeAdult         bool
-		IncludeVideo         bool
-		Language 		   string
-		PrimaryReleaseYear   int32
-		PrimaryReleaseYearGTE int32
-		PrimaryReleaseYearLTE int32
-		Page 			  int32
-		Region 			  string
-		ReleaseDateGTE 	  string
-		ReleaseDateLTE 	  string
-		SortBy 			  sortBy
-		VoteAverageGTE      float32
-		VoteAverageLTE      float32
-		VoteCountGTE        float32
-		VoteCountLTE        float32
-		WithGenres          []string
-		WithCompanies       []string
-		WithKeywords        []string
-		WithCast            []string
-		WithCrew            []string
-		WithPeople          []string
-		WithOriginCountry   string
-		WithOriginalLanguage string
-		WatchRegion string
-		WithRuntimeGTE int32
-		WithRuntimeLTE int32
+		Certification              string
+		CertificationCountry       string
+		CertificationGTE           string
+		CertificationLTE           string
+		IncludeAdult               bool
+		IncludeVideo               bool
+		Language                   string
+		PrimaryReleaseYear         int32
+		PrimaryReleaseYearGTE      int32
+		PrimaryReleaseYearLTE      int32
+		Page                       int32
+		Region                     string
+		ReleaseDateGTE             string
+		ReleaseDateLTE             string
+		SortBy                     sortBy
+		VoteAverageGTE             float32
+		VoteAverageLTE             float32
+		VoteCountGTE               float32
+		VoteCountLTE               float32
+		WithGenres                 []string
+		WithCompanies              []string
+		WithKeywords               []string
+		WithCast                   []string
+		WithCrew                   []string
+		WithPeople                 []string
+		WithOriginCountry          string
+		WithOriginalLanguage       string
+		WatchRegion                string
+		WithRuntimeGTE             int32
+		WithRuntimeLTE             int32
 		WithWatchMonetizationTypes []watchMonetizationType
-		WithWatchProviders []string
-		WithoutCompanies   string
-		WithoutGenres     string
-		WithoutKeywords   string
-		Year 			  int32
+		WithWatchProviders         []string
+		WithoutCompanies           string
+		WithoutGenres              string
+		WithoutKeywords            string
+		Year                       int32
 	}
 )
 
@@ -136,10 +136,11 @@ func AddPrimaryReleaseYearQueryParameter(
 	}
 }
 
-// AddPrimaryReleaseYearGTEQueryParameter adds the primary release year greater than or equal to query parameter to the HTTP request
-// 
+// AddPrimaryReleaseYearGTEQueryParameter adds the primary release year greater than or equal to query parameter to the
+// HTTP request
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - primaryReleaseYearGTE: the primary release year greater than or equal to (optional)
 func AddPrimaryReleaseYearGTEQueryParameter(
@@ -151,10 +152,11 @@ func AddPrimaryReleaseYearGTEQueryParameter(
 	}
 }
 
-// AddPrimaryReleaseYearLTEQueryParameter adds the primary release year less than or equal to query parameter to the HTTP request
+// AddPrimaryReleaseYearLTEQueryParameter adds the primary release year less than or equal to query parameter to the
+// HTTP request
 //
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - primaryReleaseYearLTE: the primary release year less than or equal to (optional)
 func AddPrimaryReleaseYearLTEQueryParameter(
@@ -194,7 +196,8 @@ func AddCertificationQueryParameter(
 	query.Add(Certification, certification)
 }
 
-// AddCertificationCountryQueryParameter adds the certification country query parameter to the HTTP request query parameters
+// AddCertificationCountryQueryParameter adds the certification country query parameter to the HTTP request query
+// parameters
 //
 // Parameters:
 //
@@ -234,9 +237,9 @@ func AddCertificationLTEQueryParameter(
 }
 
 // AddReleaseDateGTEQueryParameter adds the release_date.gte query parameter to the HTTP request query parameters
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - releaseDateGTE: the release_date.gte value
 func AddReleaseDateGTEQueryParameter(
@@ -247,9 +250,9 @@ func AddReleaseDateGTEQueryParameter(
 }
 
 // AddReleaseDateLTEQueryParameter adds the release_date.lte query parameter to the HTTP request query parameters
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - releaseDateLTE: the release_date.lte value
 func AddReleaseDateLTEQueryParameter(
@@ -260,9 +263,9 @@ func AddReleaseDateLTEQueryParameter(
 }
 
 // AddSortByQueryParameter adds the sort_by query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - sortBy: the sort by value
 func AddSortByQueryParameter(
@@ -277,7 +280,7 @@ func AddSortByQueryParameter(
 // AddVoteAverageGTEQueryParameter adds the vote_average.gte query parameter to the HTTP request
 //
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - voteAverageGTE: the vote average greater than or equal to value
 func AddVoteAverageGTEQueryParameter(
@@ -292,7 +295,7 @@ func AddVoteAverageGTEQueryParameter(
 // AddVoteAverageLTEQueryParameter adds the vote_average.lte query parameter to the HTTP request
 //
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - voteAverageLTE: the vote average less than or equal to value
 func AddVoteAverageLTEQueryParameter(
@@ -305,9 +308,9 @@ func AddVoteAverageLTEQueryParameter(
 }
 
 // AddVoteCountGTEQueryParameter adds the vote_count.gte query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - voteCountGTE: the vote count greater than or equal to value
 func AddVoteCountGTEQueryParameter(
@@ -322,7 +325,7 @@ func AddVoteCountGTEQueryParameter(
 // AddVoteCountLTEQueryParameter adds the vote_count.lte query parameter to the HTTP request
 //
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - voteCountLTE: the vote count less than or equal to value
 func AddVoteCountLTEQueryParameter(
@@ -335,9 +338,9 @@ func AddVoteCountLTEQueryParameter(
 }
 
 // AddWithGenresQueryParameter adds the with_genres query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withGenres: the list of genre IDs
 func AddWithGenresQueryParameter(
@@ -352,7 +355,7 @@ func AddWithGenresQueryParameter(
 // AddWithCompaniesQueryParameter adds the with_companies query parameter to the HTTP request
 //
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withCompanies: the list of company IDs
 func AddWithCompaniesQueryParameter(
@@ -367,7 +370,7 @@ func AddWithCompaniesQueryParameter(
 // AddWithKeywordsQueryParameter adds the with_keywords query parameter to the HTTP request
 //
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withKeywords: the list of keyword IDs
 func AddWithKeywordsQueryParameter(
@@ -380,9 +383,9 @@ func AddWithKeywordsQueryParameter(
 }
 
 // AddWithCastQueryParameter adds the with_cast query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withCast: the list of cast IDs
 func AddWithCastQueryParameter(
@@ -395,9 +398,9 @@ func AddWithCastQueryParameter(
 }
 
 // AddWithCrewQueryParameter adds the with_crew query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withCrew: the list of crew IDs
 func AddWithCrewQueryParameter(
@@ -410,9 +413,9 @@ func AddWithCrewQueryParameter(
 }
 
 // AddWithPeopleQueryParameter adds the with_people query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withPeople: the list of people IDs
 func AddWithPeopleQueryParameter(
@@ -440,9 +443,9 @@ func AddWithOriginCountryQueryParameter(
 }
 
 // AddWithOriginalLanguageQueryParameter adds the with_original_language query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withOriginalLanguage: the original language code
 func AddWithOriginalLanguageQueryParameter(
@@ -455,9 +458,9 @@ func AddWithOriginalLanguageQueryParameter(
 }
 
 // AddWatchRegionQueryParameter adds the watch_region query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - watchRegion: the watch region code
 func AddWatchRegionQueryParameter(
@@ -470,9 +473,9 @@ func AddWatchRegionQueryParameter(
 }
 
 // AddWithRuntimeGTEQueryParameter adds the with_runtime.gte query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withRuntimeGTE: the runtime greater than or equal to value
 func AddWithRuntimeGTEQueryParameter(
@@ -487,7 +490,7 @@ func AddWithRuntimeGTEQueryParameter(
 // AddWithRuntimeLTEQueryParameter adds the with_runtime.lte query parameter to the HTTP request
 //
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withRuntimeLTE: the runtime less than or equal to value
 func AddWithRuntimeLTEQueryParameter(
@@ -499,10 +502,11 @@ func AddWithRuntimeLTEQueryParameter(
 	}
 }
 
-// AddWithWatchMonetizationTypesQueryParameter adds the with_watch_monetization_types query parameter to the HTTP request
-// 
+// AddWithWatchMonetizationTypesQueryParameter adds the with_watch_monetization_types query parameter to the HTTP
+// request
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withWatchMonetizationTypes: the list of watch monetization types
 func AddWithWatchMonetizationTypesQueryParameter(
@@ -519,9 +523,9 @@ func AddWithWatchMonetizationTypesQueryParameter(
 }
 
 // AddWithWatchProvidersQueryParameter adds the with_watch_providers query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withWatchProviders: the list of watch provider IDs
 func AddWithWatchProvidersQueryParameter(
@@ -534,9 +538,9 @@ func AddWithWatchProvidersQueryParameter(
 }
 
 // AddWithoutCompaniesQueryParameter adds the without_companies query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withoutCompanies: the list of company IDs to exclude
 func AddWithoutCompaniesQueryParameter(
@@ -549,9 +553,9 @@ func AddWithoutCompaniesQueryParameter(
 }
 
 // AddWithoutGenresQueryParameter adds the without_genres query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withoutGenres: the list of genre IDs to exclude
 func AddWithoutGenresQueryParameter(
@@ -564,9 +568,9 @@ func AddWithoutGenresQueryParameter(
 }
 
 // AddWithoutKeywordsQueryParameter adds the without_keywords query parameter to the HTTP request
-// 
+//
 // Parameters:
-// 
+//
 // - query: the HTTP request query parameters
 // - withoutKeywords: the list of keyword IDs to exclude
 func AddWithoutKeywordsQueryParameter(
