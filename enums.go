@@ -10,19 +10,19 @@ type (
 
 const (
 	SortByPopularityAsc               sortBy = "popularity.asc"
-	SortByValuePopularityDesc         sortBy = "popularity.desc"
-	SortByValuePrimaryReleaseDateAsc  sortBy = "primary_release_date.asc"
-	SortByValuePrimaryReleaseDateDesc sortBy = "primary_release_date.desc"
-	SortByValueOriginalTitleAsc       sortBy = "original_title.asc"
-	SortByValueOriginalTitleDesc      sortBy = "original_title.desc"
-	SortByValueRevenueAsc             sortBy = "revenue.asc"
-	SortByValueRevenueDesc            sortBy = "revenue.desc"
-	SortByValueTitleAsc               sortBy = "title.asc"
-	SortByValueTitleDesc              sortBy = "title.desc"
-	SortByValueVoteAverageAsc         sortBy = "vote_average.asc"
-	SortByValueVoteAverageDesc        sortBy = "vote_average.desc"
-	SortByValueVoteCountAsc           sortBy = "vote_count.asc"
-	SortByValueVoteCountDesc          sortBy = "vote_count.desc"
+	SortByPopularityDesc         sortBy = "popularity.desc"
+	SortByPrimaryReleaseDateAsc  sortBy = "primary_release_date.asc"
+	SortByPrimaryReleaseDateDesc sortBy = "primary_release_date.desc"
+	SortByOriginalTitleAsc       sortBy = "original_title.asc"
+	SortByOriginalTitleDesc      sortBy = "original_title.desc"
+	SortByRevenueAsc             sortBy = "revenue.asc"
+	SortByRevenueDesc            sortBy = "revenue.desc"
+	SortByTitleAsc               sortBy = "title.asc"
+	SortByTitleDesc              sortBy = "title.desc"
+	SortByVoteAverageAsc         sortBy = "vote_average.asc"
+	SortByVoteAverageDesc        sortBy = "vote_average.desc"
+	SortByVoteCountAsc           sortBy = "vote_count.asc"
+	SortByVoteCountDesc          sortBy = "vote_count.desc"
 )
 
 const (
