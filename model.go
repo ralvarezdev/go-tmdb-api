@@ -9,32 +9,32 @@ type (
 
 	// Crew represents a crew member in a movie
 	Crew struct {
-		Adult              bool    `json:"adult"`
+		Adult              bool     `json:"adult"`
 		Gender             *int32   `json:"gender,omitempty"`
-		ID                 int32   `json:"id"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		OriginalName       string  `json:"original_name"`
+		ID                 int32    `json:"id"`
+		KnownForDepartment string   `json:"known_for_department"`
+		Name               string   `json:"name"`
+		OriginalName       string   `json:"original_name"`
 		Popularity         *float32 `json:"popularity,omitempty"`
 		ProfilePath        *string  `json:"profile_path,omitempty"`
-		CreditID           string  `json:"credit_id"`
-		Department         string  `json:"department"`
+		CreditID           string   `json:"credit_id"`
+		Department         string   `json:"department"`
 		Job                *string  `json:"job,omitempty"`
 	}
 
 	// Cast represents a cast member in a movie
 	Cast struct {
-		Adult              bool    `json:"adult"`
+		Adult              bool     `json:"adult"`
 		Gender             *int32   `json:"gender,omitempty"`
-		ID                 int32   `json:"id"`
-		KnownForDepartment string  `json:"known_for_department"`
-		Name               string  `json:"name"`
-		OriginalName       string  `json:"original_name"`
+		ID                 int32    `json:"id"`
+		KnownForDepartment string   `json:"known_for_department"`
+		Name               string   `json:"name"`
+		OriginalName       string   `json:"original_name"`
 		Popularity         *float32 `json:"popularity,omitempty"`
 		ProfilePath        *string  `json:"profile_path,omitempty"`
-		CreditID           string  `json:"credit_id"`
-		CastID             int32   `json:"cast_id"`
-		Character          string  `json:"character"`
+		CreditID           string   `json:"credit_id"`
+		CastID             int32    `json:"cast_id"`
+		Character          string   `json:"character"`
 		Order              *int32   `json:"order,omitempty"`
 	}
 
@@ -46,9 +46,9 @@ type (
 
 	// ProductionCompany represents a movie production company
 	ProductionCompany struct {
-		ID            int32  `json:"id"`
+		ID            int32   `json:"id"`
 		LogoPath      *string `json:"logo_path,omitempty"`
-		Name          string `json:"name"`
+		Name          string  `json:"name"`
 		OriginCountry *string `json:"origin_country,omitempty"`
 	}
 
@@ -69,18 +69,18 @@ type (
 
 	// SimpleMovie represents a simplified movie structure
 	SimpleMovie struct {
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int32 `json:"genre_ids"`
-		ID               int32   `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Overview         string  `json:"overview"`
+		Adult            bool     `json:"adult"`
+		BackdropPath     string   `json:"backdrop_path"`
+		GenreIDs         []int32  `json:"genre_ids"`
+		ID               int32    `json:"id"`
+		OriginalLanguage string   `json:"original_language"`
+		OriginalTitle    string   `json:"original_title"`
+		Overview         string   `json:"overview"`
 		Popularity       *float32 `json:"popularity,omitempty"`
-		PosterPath       string  `json:"poster_path"`
-		ReleaseDate      string  `json:"release_date"`
-		Title            string  `json:"title"`
-		Video            bool    `json:"video"`
+		PosterPath       string   `json:"poster_path"`
+		ReleaseDate      string   `json:"release_date"`
+		Title            string   `json:"title"`
+		Video            bool     `json:"video"`
 		VoteAverage      *float32 `json:"vote_average,omitempty"`
 		VoteCount        *int32   `json:"vote_count,omitempty"`
 	}
@@ -113,29 +113,29 @@ type (
 	MovieDetailsResponse struct {
 		Adult               bool                `json:"adult"`
 		BackdropPath        string              `json:"backdrop_path"`
-		BelongsToCollection *string         `json:"belongs_to_collection,omitempty"`
-		Budget              *int64               `json:"budget,omitempty"`
+		BelongsToCollection *string             `json:"belongs_to_collection,omitempty"`
+		Budget              *int64              `json:"budget,omitempty"`
 		Genres              []Genre             `json:"genres"`
-		Homepage            *string              `json:"homepage,omitempty"`
+		Homepage            *string             `json:"homepage,omitempty"`
 		ID                  int32               `json:"id"`
 		ImdbID              string              `json:"imdb_id"`
 		OriginalLanguage    string              `json:"original_language"`
 		OriginalTitle       string              `json:"original_title"`
 		Overview            string              `json:"overview"`
-		Popularity          *float32             `json:"popularity,omitempty"`
+		Popularity          *float32            `json:"popularity,omitempty"`
 		PosterPath          string              `json:"poster_path"`
 		ProductionCompanies []ProductionCompany `json:"production_companies"`
 		ProductionCountries []ProductionCountry `json:"production_countries"`
 		ReleaseDate         string              `json:"release_date"`
-		Revenue             *int64               `json:"revenue,omitempty"`
-		Runtime             *int32               `json:"runtime,omitempty"`
+		Revenue             *int64              `json:"revenue,omitempty"`
+		Runtime             *int32              `json:"runtime,omitempty"`
 		SpokenLanguages     []SpokenLanguage    `json:"spoken_languages"`
 		Status              string              `json:"status"`
-		Tagline             *string              `json:"tagline,omitempty"`
+		Tagline             *string             `json:"tagline,omitempty"`
 		Title               string              `json:"title"`
-		Video               *bool                `json:"video,omitempty"`
-		VoteAverage         *float32             `json:"vote_average,omitempty"`
-		VoteCount           *int32               `json:"vote_count,omitempty"`
+		Video               *bool               `json:"video,omitempty"`
+		VoteAverage         *float32            `json:"vote_average,omitempty"`
+		VoteCount           *int32              `json:"vote_count,omitempty"`
 	}
 
 	// AuthorDetails represents the details of an author in a review

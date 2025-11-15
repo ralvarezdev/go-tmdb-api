@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -11,7 +12,7 @@ import (
 type (
 	// Client is the TMDB API client
 	Client struct {
-		token string
+		apiKey string
 	}
 )
 
@@ -19,19 +20,19 @@ type (
 //
 // Parameters:
 //
-// - token: the TMDB API bearer token
+// - apiKey: the TMDB API key
 //
 // Returns:
 //
 // - *Client: the TMDB API client
 // - error: if there was an error creating the client
-func NewClient(token string) (*Client, error) {
-	if token == "" {
-		return nil, ErrNilBearerToken
+func NewClient(apiKey string) (*Client, error) {
+	if apiKey == "" {
+		return nil, ErrEmptyAPIKey
 	}
 
 	return &Client{
-		token: token,
+		apiKey: apiKey,
 	}, nil
 }
 
@@ -41,7 +42,7 @@ func NewClient(token string) (*Client, error) {
 //
 // - req: the HTTP request
 func (c Client) addAuthorizationToRequest(req *http.Request) {
-	req.Header.Set("Authorization", "Bearer "+c.token)
+	req.Header.Set("Authorization", "Bearer "+c.apiKey)
 }
 
 // addLanguageQueryParameter adds the language query parameter to the HTTP request
@@ -227,7 +228,7 @@ func (c Client) GetMoviesNowPlaying(
 	// Create the HTTP request
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, GetNowPlayingMoviesURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -240,13 +241,14 @@ func (c Client) GetMoviesNowPlaying(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -279,7 +281,7 @@ func (c Client) GetMoviesPopular(
 	// Create the HTTP request
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, GetPopularMoviesURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -292,13 +294,14 @@ func (c Client) GetMoviesPopular(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -331,7 +334,7 @@ func (c Client) GetMoviesTopRated(
 	// Create the HTTP request
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, GetTopRatedMoviesURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -344,13 +347,14 @@ func (c Client) GetMoviesTopRated(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -383,7 +387,7 @@ func (c Client) GetMoviesUpcoming(
 	// Create the HTTP request
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, GetUpcomingMoviesURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -396,13 +400,14 @@ func (c Client) GetMoviesUpcoming(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -443,7 +448,7 @@ func (c Client) SearchMovies(
 	// Create the HTTP request
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, SearchMoviesURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -465,13 +470,14 @@ func (c Client) SearchMovies(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -505,7 +511,7 @@ func (c Client) SimilarMovies(
 	apiURL := fmt.Sprintf(SimilarMoviesURL, fmt.Sprintf("%d", movieID))
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, apiURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -518,13 +524,14 @@ func (c Client) SimilarMovies(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -556,7 +563,7 @@ func (c Client) GetMovieCredits(
 	apiURL := fmt.Sprintf(GetMovieCreditsURL, fmt.Sprintf("%d", movieID))
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, apiURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -571,13 +578,14 @@ func (c Client) GetMovieCredits(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -609,7 +617,7 @@ func (c Client) GetMovieDetails(
 	apiURL := fmt.Sprintf(GetMovieDetailsURL, fmt.Sprintf("%d", movieID))
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, apiURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -624,13 +632,14 @@ func (c Client) GetMovieDetails(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response
@@ -664,7 +673,7 @@ func (c Client) GetMovieReviews(
 	apiURL := fmt.Sprintf(GetMovieReviewsURL, fmt.Sprintf("%d", movieID))
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, apiURL, http.NoBody)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrBuildingRequest, err)
 	}
 
 	// Add the Authorization header
@@ -680,13 +689,14 @@ func (c Client) GetMovieReviews(
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, ErrRequestFailed
+		return nil, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
 	}
 	defer resp.Body.Close()
 
 	// Check for non-200 status codes
 	if resp.StatusCode != http.StatusOK {
-		return nil, err
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
 	}
 
 	// Parse the response

@@ -4,9 +4,14 @@ import (
 	"errors"
 )
 
+const (
+	ErrBuildingRequest        = "error building TMDB API request: %v"
+	ErrAnErrOcurredDuringRequest = "an error occurred during the TMDB API request: %v"
+	ErrRequestFailed 			 = "TMDB API request failed with status code %d: %s"
+)
+
 var (
 	ErrNilClient       = errors.New("TMDB API client is nil")
-	ErrNilBearerToken  = errors.New("TMDB API bearer token is nil")
-	ErrRequestFailed   = errors.New("TMDB API request failed")
+	ErrEmptyAPIKey  = errors.New("TMDB API key is nil or empty")
 	ErrResponseParsing = errors.New("failed to parse TMDB API response")
 )
