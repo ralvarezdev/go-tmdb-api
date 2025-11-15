@@ -25,7 +25,7 @@ type (
 		Region                     string
 		ReleaseDateGTE             string
 		ReleaseDateLTE             string
-		SortBy                     sortBy
+		SortBy                     SortByEnum
 		VoteAverageGTE             float32
 		VoteAverageLTE             float32
 		VoteCountGTE               float32
@@ -41,7 +41,7 @@ type (
 		WatchRegion                string
 		WithRuntimeGTE             int32
 		WithRuntimeLTE             int32
-		WithWatchMonetizationTypes []watchMonetizationType
+		WithWatchMonetizationTypes []WatchMonetizationTypeEnums
 		WithWatchProviders         []string
 		WithoutCompanies           string
 		WithoutGenres              string
@@ -270,7 +270,7 @@ func AddReleaseDateLTEQueryParameter(
 // - sortBy: the sort by value
 func AddSortByQueryParameter(
 	query url.Values,
-	sortBy sortBy,
+	sortBy SortByEnum,
 ) {
 	if sortBy != "" {
 		query.Add(SortBy, string(sortBy))
@@ -511,7 +511,7 @@ func AddWithRuntimeLTEQueryParameter(
 // - withWatchMonetizationTypes: the list of watch monetization types
 func AddWithWatchMonetizationTypesQueryParameter(
 	query url.Values,
-	withWatchMonetizationTypes []watchMonetizationType,
+	withWatchMonetizationTypes []WatchMonetizationTypeEnums,
 ) {
 	if len(withWatchMonetizationTypes) > 0 {
 		strTypes := make([]string, len(withWatchMonetizationTypes))

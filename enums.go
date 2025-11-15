@@ -1,34 +1,34 @@
 package gotmdbapi
 
 type (
-	// sortBy represents the sorting options for TMDB API requests
-	sortBy string
+	// SortByEnum represents the sorting options for TMDB API requests
+	SortByEnum string
 
-	// watchMonetizationType represents the watch monetization types for TMDB API requests
-	watchMonetizationType string
+	// WatchMonetizationTypeEnums represents the watch monetization types for TMDB API requests
+	WatchMonetizationTypeEnums string
 )
 
 const (
-	SortByPopularityAsc               sortBy = "popularity.asc"
-	SortByPopularityDesc         sortBy = "popularity.desc"
-	SortByPrimaryReleaseDateAsc  sortBy = "primary_release_date.asc"
-	SortByPrimaryReleaseDateDesc sortBy = "primary_release_date.desc"
-	SortByOriginalTitleAsc       sortBy = "original_title.asc"
-	SortByOriginalTitleDesc      sortBy = "original_title.desc"
-	SortByRevenueAsc             sortBy = "revenue.asc"
-	SortByRevenueDesc            sortBy = "revenue.desc"
-	SortByTitleAsc               sortBy = "title.asc"
-	SortByTitleDesc              sortBy = "title.desc"
-	SortByVoteAverageAsc         sortBy = "vote_average.asc"
-	SortByVoteAverageDesc        sortBy = "vote_average.desc"
-	SortByVoteCountAsc           sortBy = "vote_count.asc"
-	SortByVoteCountDesc          sortBy = "vote_count.desc"
+	SortByPopularityAsc          SortByEnum = "popularity.asc"
+	SortByPopularityDesc         SortByEnum = "popularity.desc"
+	SortByPrimaryReleaseDateAsc  SortByEnum = "primary_release_date.asc"
+	SortByPrimaryReleaseDateDesc SortByEnum = "primary_release_date.desc"
+	SortByOriginalTitleAsc       SortByEnum = "original_title.asc"
+	SortByOriginalTitleDesc      SortByEnum = "original_title.desc"
+	SortByRevenueAsc             SortByEnum = "revenue.asc"
+	SortByRevenueDesc            SortByEnum = "revenue.desc"
+	SortByTitleAsc               SortByEnum = "title.asc"
+	SortByTitleDesc              SortByEnum = "title.desc"
+	SortByVoteAverageAsc         SortByEnum = "vote_average.asc"
+	SortByVoteAverageDesc        SortByEnum = "vote_average.desc"
+	SortByVoteCountAsc           SortByEnum = "vote_count.asc"
+	SortByVoteCountDesc          SortByEnum = "vote_count.desc"
 )
 
 const (
-	WatchMonetizationTypeFlatrate watchMonetizationType = "flatrate"
-	WatchMonetizationTypeFree     watchMonetizationType = "free"
-	WatchMonetizationTypeAds      watchMonetizationType = "ads"
-	WatchMonetizationTypeRent     watchMonetizationType = "rent"
-	WatchMonetizationTypeBuy      watchMonetizationType = "buy"
+	WatchMonetizationTypeFlatrate WatchMonetizationTypeEnums = "flatrate"
+	WatchMonetizationTypeFree     WatchMonetizationTypeEnums = "free"
+	WatchMonetizationTypeAds      WatchMonetizationTypeEnums = "ads"
+	WatchMonetizationTypeRent     WatchMonetizationTypeEnums = "rent"
+	WatchMonetizationTypeBuy      WatchMonetizationTypeEnums = "buy"
 )
