@@ -165,4 +165,9 @@ type (
 		TotalPages   int32    `json:"total_pages"`
 		TotalResults int32    `json:"total_results"`
 	}
+	
+	// GenreListResponse represents a genre list response
+	GenreListResponse struct {
+		Genres []Genre `json:"genres"`
+	}
 )
