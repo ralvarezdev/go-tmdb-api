@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"net/url"
 )
 
 type (
@@ -45,166 +44,6 @@ func (c Client) addAuthorizationToRequest(req *http.Request) {
 	req.Header.Set("Authorization", "Bearer "+c.apiKey)
 }
 
-// addLanguageQueryParameter adds the language query parameter to the HTTP request
-//
-// Parameters:
-//
-// - query: the HTTP request query parameters
-// - language: the language code (optional, defaults to "en-US")
-func (c Client) addLanguageQueryParameter(
-	query url.Values,
-	language string,
-) {
-	if language != "" {
-		query.Add(Language, language)
-	}
-}
-
-// addIncludeAdultQueryParameter adds the include adult query parameter to the HTTP request
-//
-// Parameters:
-//
-// - query: the HTTP request query parameters
-// - includeAdult: whether to include adult content
-func (c Client) addIncludeAdultQueryParameter(
-	query url.Values,
-	includeAdult bool,
-) {
-	query.Add(IncludeAdult, fmt.Sprintf("%t", includeAdult))
-}
-
-// addPageQueryParameter adds the page query parameter to the HTTP request
-//
-// Parameters:
-//
-// - query: the HTTP request query parameters
-// - page: the page number (optional, defaults to 1)
-func (c Client) addPageQueryParameter(
-	query url.Values,
-	page int32,
-) {
-	if page > 0 {
-		query.Add(Page, fmt.Sprintf("%d", page))
-	}
-}
-
-// addRegionQueryParameter adds the region query parameter to the HTTP request
-//
-// Parameters:
-//
-// - query: the HTTP request query parameters
-// - region: the region code (optional)
-func (c Client) addRegionQueryParameter(
-	query url.Values,
-	region string,
-) {
-	if region != "" {
-		query.Add(Region, region)
-	}
-}
-
-// addPrimaryReleaseYearQueryParameter adds the primary release year query parameter to the HTTP request
-//
-// Parameters:
-//
-// - query: the HTTP request query parameters
-// - primaryReleaseYear: the primary release year (optional)
-func (c Client) addPrimaryReleaseYearQueryParameter(
-	query url.Values,
-	primaryReleaseYear int32,
-) {
-	if primaryReleaseYear > 0 {
-		query.Add(PrimaryReleaseYear, fmt.Sprintf("%d", primaryReleaseYear))
-	}
-}
-
-// addYearQueryParameter adds the year query parameter to the HTTP request
-//
-// Parameters:
-//
-// - query: the HTTP request query parameters
-// - year: the year (optional)
-func (c Client) addYearQueryParameter(
-	query url.Values,
-	year int32,
-) {
-	if year > 0 {
-		query.Add(Year, fmt.Sprintf("%d", year))
-	}
-}
-
-// addMovieListsQueryParameters adds the query parameters for movie lists to the HTTP request
-//
-// Parameters:
-//
-// - req: the HTTP request
-// - language: the language code (optional, defaults to "en-US")
-// - page: the page number (optional, defaults to 1)
-// - region: the region code (optional)
-func (c Client) addMovieListsQueryParameters(
-	req *http.Request,
-	language string,
-	page int32,
-	region string,
-) {
-	q := req.URL.Query()
-	c.addLanguageQueryParameter(q, language)
-	c.addPageQueryParameter(q, page)
-	c.addRegionQueryParameter(q, region)
-	req.URL.RawQuery = q.Encode()
-}
-
-// addSearchMoviesQueryParameters adds the query parameters for searching movies to the HTTP request
-//
-// Parameters:
-//
-// - req: the HTTP request
-// - query: the search query
-// - includeAdult: whether to include adult content
-// - language: the language code (optional, defaults to "en-US")
-// - primaryReleaseYear: the primary release year (optional)
-// - page: the page number (optional, defaults to 1)
-// - region: the region code (optional)
-// - year: the year (optional)
-func (c Client) addSearchMoviesQueryParameters(
-	req *http.Request,
-	query string,
-	includeAdult bool,
-	language string,
-	primaryReleaseYear int32,
-	page int32,
-	region string,
-	year int32,
-) {
-	q := req.URL.Query()
-	q.Add(Query, query)
-	c.addIncludeAdultQueryParameter(q, includeAdult)
-	c.addLanguageQueryParameter(q, language)
-	c.addPrimaryReleaseYearQueryParameter(q, primaryReleaseYear)
-	c.addPageQueryParameter(q, page)
-	c.addRegionQueryParameter(q, region)
-	c.addYearQueryParameter(q, year)
-	req.URL.RawQuery = q.Encode()
-}
-
-// addSimilarMoviesQueryParameters adds the query parameters for similar movies to the HTTP request
-//
-// Parameters:
-//
-// - req: the HTTP request
-// - language: the language code (optional, defaults to "en-US")
-// - page: the page number (optional, defaults to 1)
-func (c Client) addSimilarMoviesQueryParameters(
-	req *http.Request,
-	language string,
-	page int32,
-) {
-	q := req.URL.Query()
-	c.addLanguageQueryParameter(q, language)
-	c.addPageQueryParameter(q, page)
-	req.URL.RawQuery = q.Encode()
-}
-
 // GetMoviesNowPlaying fetches the list of movies that are now playing in theaters
 //
 // Parameters:
@@ -236,7 +75,7 @@ func (c Client) GetMoviesNowPlaying(
 	c.addAuthorizationToRequest(req)
 
 	// Add query parameters
-	c.addMovieListsQueryParameters(req, language, page, region)
+	AddMovieListsQueryParameters(req, language, page, region)
 
 	// Make the HTTP request
 	client := &http.Client{}
@@ -257,7 +96,7 @@ func (c Client) GetMoviesNowPlaying(
 	if parseErr := json.NewDecoder(resp.Body).Decode(parsedResp); parseErr != nil {
 		return nil, resp.StatusCode, ErrResponseParsing
 	}
-	return parsedResp, resp.StatusCode,  nil
+	return parsedResp, resp.StatusCode, nil
 }
 
 // GetMoviesPopular fetches the list of popular movies
@@ -290,7 +129,7 @@ func (c Client) GetMoviesPopular(
 	c.addAuthorizationToRequest(req)
 
 	// Add query parameters
-	c.addMovieListsQueryParameters(req, language, page, region)
+	AddMovieListsQueryParameters(req, language, page, region)
 
 	// Make the HTTP request
 	client := &http.Client{}
@@ -344,7 +183,7 @@ func (c Client) GetMoviesTopRated(
 	c.addAuthorizationToRequest(req)
 
 	// Add query parameters
-	c.addMovieListsQueryParameters(req, language, page, region)
+	AddMovieListsQueryParameters(req, language, page, region)
 
 	// Make the HTTP request
 	client := &http.Client{}
@@ -365,7 +204,7 @@ func (c Client) GetMoviesTopRated(
 	if parseErr := json.NewDecoder(resp.Body).Decode(parsedResp); parseErr != nil {
 		return nil, resp.StatusCode, ErrResponseParsing
 	}
-	return parsedResp,resp.StatusCode, nil
+	return parsedResp, resp.StatusCode, nil
 }
 
 // GetMoviesUpcoming fetches the list of upcoming movies
@@ -398,7 +237,7 @@ func (c Client) GetMoviesUpcoming(
 	c.addAuthorizationToRequest(req)
 
 	// Add query parameters
-	c.addMovieListsQueryParameters(req, language, page, region)
+	AddMovieListsQueryParameters(req, language, page, region)
 
 	// Make the HTTP request
 	client := &http.Client{}
@@ -460,7 +299,7 @@ func (c Client) SearchMovies(
 	c.addAuthorizationToRequest(req)
 
 	// Add query parameters
-	c.addSearchMoviesQueryParameters(
+	AddSearchMoviesQueryParameters(
 		req,
 		query,
 		includeAdult,
@@ -524,7 +363,7 @@ func (c Client) SimilarMovies(
 	c.addAuthorizationToRequest(req)
 
 	// Add query parameters
-	c.addSimilarMoviesQueryParameters(req, language, page)
+	AddSimilarMoviesQueryParameters(req, language, page)
 
 	// Make the HTTP request
 	client := &http.Client{}
@@ -578,7 +417,7 @@ func (c Client) GetMovieCredits(
 
 	// Add query parameters
 	q := req.URL.Query()
-	c.addLanguageQueryParameter(q, language)
+	AddLanguageQueryParameter(q, language)
 	req.URL.RawQuery = q.Encode()
 
 	// Make the HTTP request
@@ -633,7 +472,7 @@ func (c Client) GetMovieDetails(
 
 	// Add query parameters
 	q := req.URL.Query()
-	c.addLanguageQueryParameter(q, language)
+	AddLanguageQueryParameter(q, language)
 	req.URL.RawQuery = q.Encode()
 
 	// Make the HTTP request
@@ -690,8 +529,8 @@ func (c Client) GetMovieReviews(
 
 	// Add query parameters
 	q := req.URL.Query()
-	c.addLanguageQueryParameter(q, language)
-	c.addPageQueryParameter(q, page)
+	AddLanguageQueryParameter(q, language)
+	AddPageQueryParameter(q, page)
 	req.URL.RawQuery = q.Encode()
 
 	// Make the HTTP request
@@ -717,14 +556,14 @@ func (c Client) GetMovieReviews(
 }
 
 // GetGenresMovieList fetches the list of movie genres
-// 
+//
 // Parameters:
-// 
+//
 // - ctx: the context of the request
 // - language: the language code (optional, defaults to "en-US")
-// 
+//
 // Returns:
-// 
+//
 // - (*GenreListResponse): the response containing the list of movie genres
 // - int: the HTTP status code
 // - error: if there was an error fetching the movie genres
@@ -743,7 +582,7 @@ func (c Client) GetGenresMovieList(
 
 	// Add query parameters
 	q := req.URL.Query()
-	c.addLanguageQueryParameter(q, language)
+	AddLanguageQueryParameter(q, language)
 	req.URL.RawQuery = q.Encode()
 
 	// Make the HTTP request
@@ -762,6 +601,57 @@ func (c Client) GetGenresMovieList(
 
 	// Parse the response
 	parsedResp = &GenreListResponse{}
+	if parseErr := json.NewDecoder(resp.Body).Decode(parsedResp); parseErr != nil {
+		return nil, resp.StatusCode, ErrResponseParsing
+	}
+	return parsedResp, resp.StatusCode, nil
+}
+
+// DiscoverMovies discovers movies based on various criteria
+//
+// Parameters:
+//
+// - ctx: the context of the request
+//
+// Returns:
+//
+// - (*MovieListResponse): the response containing the list of discovered movies
+// - int: the HTTP status code
+// - error: if there was an error discovering movies
+func (c Client) DiscoverMovies(
+	ctx context.Context,
+	queryParameters *DiscoverMoviesQueryParameters,
+) (parsedResp *MovieListResponse, statusCode int, err error) {
+	// Create the HTTP request
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, DiscoverMoviesURL, http.NoBody)
+	if err != nil {
+		return nil, http.StatusInternalServerError, fmt.Errorf(ErrBuildingRequest, err)
+	}
+
+	// Add the Authorization header
+	c.addAuthorizationToRequest(req)
+
+	// Add query parameters
+	if queryParameters != nil {
+		AddGenreMovieListQueryParameters(req, queryParameters)
+	}
+
+	// Make the HTTP request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, resp.StatusCode, fmt.Errorf(ErrAnErrOcurredDuringRequest, err)
+	}
+	defer resp.Body.Close()
+
+	// Check for non-200 status codes
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, resp.StatusCode, fmt.Errorf(ErrRequestFailed, resp.StatusCode, string(body))
+	}
+
+	// Parse the response
+	parsedResp = &MovieListResponse{}
 	if parseErr := json.NewDecoder(resp.Body).Decode(parsedResp); parseErr != nil {
 		return nil, resp.StatusCode, ErrResponseParsing
 	}

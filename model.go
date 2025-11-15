@@ -142,8 +142,8 @@ type (
 	AuthorDetails struct {
 		Name       string  `json:"name"`
 		Username   string  `json:"username"`
-		AvatarPath string  `json:"avatar_path"`
-		Rating     float32 `json:"rating"`
+		AvatarPath *string  `json:"avatar_path,omitempty"`
+		Rating     *int32 `json:"rating,omitempty"`
 	}
 
 	// Review represents a movie review
